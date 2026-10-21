@@ -26,8 +26,6 @@ button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:10px;backg
 <label>School / സ്കൂൾ</label><input type="text" id="school" value="GHSS KARAKUNNU">
 <label>Item / ഇനം</label><input type="text" id="item" value="STILL MODEL">
 <label>Result / ഫലം</label><select id="result"><option>FIRST WITH A GRADE</option><option>SECOND WITH A GRADE</option><option>THIRD WITH A GRADE</option><option>FIRST</option><option>SECOND</option><option>THIRD</option><option>A GRADE</option><option>B GRADE</option></select>
-<label>Congratulations Text</label><input type="text" id="cong" value="Congratulations">
-<label>School Name</label><input type="text" id="foot" value="GHSS KARAKUNNU">
 </section>
 <section class="card"><canvas id="c" width="1080" height="1350"></canvas>
 <button id="dl">⬇ Download Poster (PNG)</button></section>
@@ -85,10 +83,10 @@ function draw(){
  if(sub)yy=stack(sub,540,yy,400,34,60,'#8c3d78',A)+22;else yy+=6;
  stack($('item').value.trim().toUpperCase()||'ITEM',560,yy,300,38,60,'#1f4a5e',"Cinzel,'Noto Sans Malayalam',serif");
  // congratulations + bottom
- one($('cong').value.trim()||'Congratulations',792,1130,440,78,30,'#1f4f45',"'Great Vibes',cursive");
- one($('foot').value.trim().toUpperCase(),802,1195,370,58,24,'#3a2a0c');
+ one('Congratulations',792,1130,440,78,30,'#1f4f45',"'Great Vibes',cursive");
+ one('GHSS KARAKUNNU',802,1195,370,58,24,'#3a2a0c');
 }
-['name','school','item','result','cong','foot','zoom','ox','oy'].forEach(i=>{$(i).addEventListener('input',draw);$(i).addEventListener('change',draw)});
+['name','school','item','result','zoom','ox','oy'].forEach(i=>{$(i).addEventListener('input',draw);$(i).addEventListener('change',draw)});
 $('photo').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{photo.onload=()=>{hasPhoto=true;$('zoom').value=1;$('ox').value=0;$('oy').value=0;draw()};photo.src=ev.target.result};r.readAsDataURL(f)});
 $('dl').onclick=()=>{draw();const a=document.createElement('a');a.download='Poster_'+($('name').value.trim().replace(/\s+/g,'_')||'Winner')+'.png';a.href=c.toDataURL('image/png');a.click()};
 frame.onload=draw;frame.src=FRAME_SRC;
